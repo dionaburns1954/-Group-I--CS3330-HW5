@@ -129,6 +129,12 @@ public class PizzaOrder {
     // Method to check if there are any uncooked pizzas
     public boolean isThereAnyUncookedPizza() {
         // TODO: Implement method
+    	for(AbstractPizza p : pizzaOrderList) {
+    		if(p.getCookingStrategy() == null) {
+    			return true;
+    		}
+    	}
+    	return false;
     }
 
     // Method for checkout
