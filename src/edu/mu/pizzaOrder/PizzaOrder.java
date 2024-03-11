@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class PizzaOrder {
 	
-	private PizzaCookingFactory pizzaFactory;
+	private PizzaCookingFactory pizzaFactory = new PizzaCookingFactory();
 	private ICookingStrategy cookingStrategy;
 	private List<AbstractPizza> pizzaOrderList;
 	
@@ -54,21 +54,21 @@ public class PizzaOrder {
     	//add pizza to pizzaOrderList
     	AbstractPizza p;
     	if(pizzaType == PizzaType.HAWAIIAN) { //creates Hawaiian pizza
-    		p = new HawaiianPizza();
+    		p = pizzaFactory.createPizza(pizzaType);
     		
     		
     		pizzaOrderList.add(p);
     		return true;
     	}
     	else if(pizzaType == PizzaType.MARGHERITA) { //creates Margherita pizza
-    		p = new MargheritaPizza();
+    		p = pizzaFactory.createPizza(pizzaType);
     		
     		
     		pizzaOrderList.add(p);
     		return true;
     	}
     	else if(pizzaType == PizzaType.SUPREME) { //creates supreme pizza
-    		p = new SupremePizza();
+    		p = pizzaFactory.createPizza(pizzaType);
     		
     		
     		
@@ -76,7 +76,7 @@ public class PizzaOrder {
     		return true;
     	}
     	else if(pizzaType == PizzaType.VEGETARIAN){ //creates vegetarian pizza
-    		p = new VegetarianPizza();
+    		p = pizzaFactory.createPizza(pizzaType);
     		
     		
     		
