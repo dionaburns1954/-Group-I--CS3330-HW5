@@ -32,7 +32,9 @@ public abstract class AbstractPizza {
     public List<Toppings> getToppingList() {
         return toppingList;
     }
-
+    // implemented within the subclasses updates pizza price 
+    public abstract double updatePizzaPrice();
+    
     public void setToppingList(List<Toppings> toppingList) {
         this.toppingList = toppingList;
     }
