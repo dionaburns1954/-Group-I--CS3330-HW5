@@ -105,7 +105,25 @@ public class PizzaOrder {
 
     // Method to remove topping from pizza
     public boolean removeToppingFromPizza(int orderID, Toppings topping) {
-        // TODO: Implement method
+    	//loop through pizza list and find pizza with orderID
+    	// remove topping from pizza if applicable
+    	//if found pizza but no topping exists return true
+    	//if found pizza and topping exists return true
+    	//if did not find pizza return false
+    	for(int i = 0; i < pizzaOrderList.size(); i++) { //loop through pizzaOrderList to find specific pizza
+    		if(pizzaOrderList.get(i).getPizzaOrderID() == orderID) { 
+    			AbstractPizza p = pizzaOrderList.get(i);
+    			for(int j = 0; j < p.getToppingList().size(); j++) { //go through topping list of found pizza
+    				if(p.getToppingList().get(i) == topping) {
+    					p.getToppingList().remove(i); //remove topping if it exists on pizza
+    					p.setTotalPrice(p.getTotalPrice() - topping.getPrice()); //changes price of pizza
+    					return true;
+    				}
+    			}
+    			return true;
+    		}
+    	}
+    	return false;
     }
 
     // Method to check if there are any uncooked pizzas
@@ -116,6 +134,7 @@ public class PizzaOrder {
     // Method for checkout
     public double checkout() throws Exception {
         // TODO: Implement method
+    	
     }
 
     // Method to select cooking strategy by Pizza Order ID
