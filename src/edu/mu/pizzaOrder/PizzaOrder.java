@@ -17,6 +17,7 @@ public class PizzaOrder {
 	// Method to print list of toppings by Pizza Order ID
     public void printListOfToppingsByPizzaOrderID(int orderID) {
         // TODO: Implement method
+    	
     }
 
     // Method to print pizza order cart
@@ -26,7 +27,14 @@ public class PizzaOrder {
 
     // Method to get pizza by order ID
     public AbstractPizza getPizzaByOrderID(int orderID) {
-        // TODO: Implement method
+    	for(int i = 0; i < pizzaOrderList.size(); i++) {
+    		if(pizzaOrderList.get(i).getPizzaOrderID() == orderID) { //loop through pizza list
+    			return pizzaOrderList.get(i); //returns index of pizza if found
+    		}
+    	}
+    	
+    	return null; //returns null if not pizza matching ID was found
+    	
     }
 
     // Method to add pizza to cart
