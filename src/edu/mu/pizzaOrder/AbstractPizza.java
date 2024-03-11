@@ -17,6 +17,17 @@ public abstract class AbstractPizza {
         // Initialize other attributes here
     }
     
+    public AbstractPizza(AbstractPizza Pizza) {
+    	
+    	this.toppingList = new ArrayList<>(Pizza.toppingList);
+        this.priceWithoutToppings = Pizza.priceWithoutToppings;
+        this.totalPrice = Pizza.totalPrice;
+        this.pizzaOrderID = Pizza.pizzaOrderID;
+        this.cookingStrategy = Pizza.cookingStrategy;
+        this.cookingPrice = Pizza.cookingPrice;
+    }
+    
+    
  // Getter and setter methods for toppingList
     public List<Toppings> getToppingList() {
         return toppingList;
