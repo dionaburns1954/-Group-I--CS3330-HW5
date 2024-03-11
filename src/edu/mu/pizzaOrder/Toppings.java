@@ -15,11 +15,11 @@ public enum Toppings {
 	
 	private final double price;
 	
-	
+	// this is price for toppings ( last double) 
 	Toppings(double price){
 		this.price = price;
 	}
-	
+	// this is the getter for price 
 	public double getPrice() {
 		return price;
 	}
