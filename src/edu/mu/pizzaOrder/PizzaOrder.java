@@ -91,6 +91,16 @@ public class PizzaOrder {
     // Method to add new topping to pizza
     public boolean addNewToppingToPizza(int orderID, Toppings topping) {
         // TODO: Implement method
+    	for(int i = 0; i < pizzaOrderList.size(); i++) {
+    		if(pizzaOrderList.get(i).getPizzaOrderID() == orderID) {
+    			AbstractPizza p = pizzaOrderList.get(i);
+    			p.getToppingList().add(topping);
+    			p.setTotalPrice(p.getTotalPrice() + topping.getPrice());
+    			return true;
+    		}
+    	}
+    	
+    	return false;
     }
 
     // Method to remove topping from pizza
