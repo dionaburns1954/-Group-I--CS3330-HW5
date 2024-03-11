@@ -23,6 +23,9 @@ public class PizzaOrder {
     // Method to print pizza order cart
     public void printPizzaOrderCart(int orderID) {
         // TODO: Implement method
+    	for(AbstractPizza p : pizzaOrderList) {
+    		System.out.println(p); //might need to be fixed later on
+    	}
     }
 
     // Method to get pizza by order ID
