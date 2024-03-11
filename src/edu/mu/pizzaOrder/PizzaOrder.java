@@ -128,7 +128,6 @@ public class PizzaOrder {
 
     // Method to check if there are any uncooked pizzas
     public boolean isThereAnyUncookedPizza() {
-        // TODO: Implement method
     	for(AbstractPizza p : pizzaOrderList) {
     		if(p.getCookingStrategy() == null) {
     			return true;
@@ -145,7 +144,20 @@ public class PizzaOrder {
 
     // Method to select cooking strategy by Pizza Order ID
     public boolean selectCookingStrategyByPizzaOrderID(int orderID, CookingStyleType cookingStrategyType) {
-        // TODO: Implement method
+        //loop through pizza list and find pizza with orderID
+    	//set cooking style of pizza with that orderID
+    	
+    	for(int i = 0; i < pizzaOrderList.size(); i++) { 
+    		if(pizzaOrderList.get(i).getPizzaOrderID() == orderID) { //find pizza with orderID
+    			AbstractPizza p = pizzaOrderList.get(i);
+    			p.setCookingStrategy(cookingStrategy); //change cooking strategy
+    			p.setCookingPrice(cookingStrategyType.getAdditionalCookingPrice()); //updates price of pizza
+    			
+    			return true;
+    		}
+    	}
+    	
+    	return false;
     }
 
 }
