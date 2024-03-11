@@ -138,8 +138,18 @@ public class PizzaOrder {
 
     // Method for checkout
     public double checkout() throws Exception {
-        // TODO: Implement method
-    	
+        if(isThereAnyUncookedPizza()) {
+        	double totalPrice = 0; // Running total of the price of all items in cart
+        	
+        	for(AbstractPizza p : pizzaOrderList) {
+        		totalPrice += p.getTotalPrice(); // Add the price of pizza p to running total
+        	}
+        	// After the loop has finished, return the final total price
+        	return totalPrice;
+        } else {
+        	// Throw exception if there are uncooked pizzas in the cart
+        	throw new Exception("Uncooked pizza"); 
+        }
     }
 
     // Method to select cooking strategy by Pizza Order ID
