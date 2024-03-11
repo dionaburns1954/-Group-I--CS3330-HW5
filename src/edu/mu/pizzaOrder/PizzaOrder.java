@@ -139,6 +139,28 @@ public class PizzaOrder {
     // Method for checkout
     public double checkout() throws Exception {
         // TODO: Implement method
+    	//checks if there is any uncooked pizzas and throws exception
+    	//if there are no uncooked pizzas, return total price of pizzaOrderList
+    	double totalPrice = 0.0;
+    	ArrayList<AbstractPizza> list = new ArrayList<>(); //list of uncooked pizzas
+    	for(int i = 0; i < pizzaOrderList.size(); i++) {
+    		if(pizzaOrderList.get(i).getCookingStrategy() == null) { //pizza is uncooked
+    			list.add(pizzaOrderList.get(i));
+    		}
+    		totalPrice += pizzaOrderList.get(i).getTotalPrice(); 
+    		
+    	}
+    	if(!list.isEmpty()) {
+    		for(AbstractPizza p : list) {
+    			System.out.println(p.toString());
+    		}
+    		throw new Exception("ERROR! YOU HAVE UNCOOKED PIZZAS"); //there are uncooked pizzas
+    	}
+    	
+    	
+    	return totalPrice;
+    	
+    	
     	
     }
 
