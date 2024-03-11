@@ -16,7 +16,13 @@ public class PizzaOrder {
 	
 	// Method to print list of toppings by Pizza Order ID
     public void printListOfToppingsByPizzaOrderID(int orderID) {
-        // TODO: Implement method
+        //loop through pizzaOrder list
+    	//print toppings of selected pizza in pizzaOrderList
+    	for(AbstractPizza p : pizzaOrderList) {
+    		if(p.getPizzaOrderID() == orderID) {
+    			System.out.println(p.getToppingList());
+    		}
+    	}
     	
     }
 
@@ -43,6 +49,43 @@ public class PizzaOrder {
     // Method to add pizza to cart
     public boolean addPizzaToCart(PizzaType pizzaType) {
         // TODO: Implement method
+    	//user passes in pizzType
+    	//create pizza of specific type
+    	//add pizza to pizzaOrderList
+    	AbstractPizza p;
+    	if(pizzaType == PizzaType.HAWAIIAN) { //creates Hawaiian pizza
+    		p = new HawaiianPizza();
+    		
+    		
+    		pizzaOrderList.add(p);
+    		return true;
+    	}
+    	else if(pizzaType == PizzaType.MARGHERITA) { //creates Margherita pizza
+    		p = new MargheritaPizza();
+    		
+    		
+    		pizzaOrderList.add(p);
+    		return true;
+    	}
+    	else if(pizzaType == PizzaType.SUPREME) { //creates supreme pizza
+    		p = new SupremePizza();
+    		
+    		
+    		
+    		pizzaOrderList.add(p);
+    		return true;
+    	}
+    	else if(pizzaType == PizzaType.VEGETARIAN){ //creates vegetarian pizza
+    		p = new VegetarianPizza();
+    		
+    		
+    		
+    		pizzaOrderList.add(p);
+    		return true;
+    	}
+    	
+    	return false;
+    	
     }
 
     // Method to add new topping to pizza
