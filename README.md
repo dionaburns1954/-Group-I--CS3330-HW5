@@ -7,16 +7,16 @@ This program is supposed to simulate a pizza ordering service. A user is suppose
 To Run this program just copy the git repository into your eclipse IDE and go into the Main file. From there you can create an instance of a PizzaOrder where you can order pizza using any of the methods provided in the PizzaOrder class.
 
 ## Classes/ Sub Classes
--Abstract Pizza
--- Hawaiian Pizza
--- VegetarianPizza
--- MargheritaPizza
--- SupremePizza
+- Abstract Pizza
+- Hawaiian Pizza
+- VegetarianPizza
+- MargheritaPizza
+- SupremePizza
 
--ICookingStrategy
---MicrowaveCookingStrategy
---ConventionalOvenCookingStrategy
---BrickOvenCookingStrategy
+- ICookingStrategy
+- MicrowaveCookingStrategy
+- ConventionalOvenCookingStrategy
+- BrickOvenCookingStrategy
 
 ## Pizza Orders Methods
 - public void printListOfToppingsByPizzaOrderID(int orderID)
