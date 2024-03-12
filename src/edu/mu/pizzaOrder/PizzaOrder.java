@@ -164,7 +164,7 @@ public class PizzaOrder {
     		if(pizzaOrderList.get(i).getPizzaOrderID() == orderID) { //find pizza with orderID
     			AbstractPizza p = pizzaOrderList.get(i);
     			p.setCookingStrategy(cookingStrategy); //change cooking strategy
-    			p.setCookingPrice(cookingStrategyType.getAdditionalCookingPrice()); //updates price of pizza
+    			p.setCookingPrice(cookingStrategyType.getCookingStylePrice()); //updates price of pizza
     			
     			return true;
     		}
