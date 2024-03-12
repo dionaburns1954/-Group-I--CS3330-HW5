@@ -33,8 +33,11 @@ To Run this program just copy the git repository into your eclipse IDE and go in
 
 ## Enums 
 - Pizzatype
+  - enum of pizza types supported by the program
 - Toppings
+  - enum of toppings that are supported by the program
 - CookingStyleType
+  - enum of cooking styles that the user can select from
 
 ## Pizza Cooking Factory 
 - public AbstractPizza createPizza(PizzaType pizzaType)
