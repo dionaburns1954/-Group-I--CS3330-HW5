@@ -1,19 +1,40 @@
 package edu.mu.pizzaOrder;
 
-
-
+/**
+ * Vegetarian {@link AbstractPizza} containing tomato, cheese, bell peppers, black olives, and mushrooms.
+ * 
+ * @author Logan Bird
+ * @version 1.0
+ * 
+ * @see AbstractPizza
+ */
 public class VegetarianPizza  extends AbstractPizza {
+	
+	/**
+	 * Creates a VegetarianPizza with default toppings.
+	 */
 	public VegetarianPizza () {
 		super();
 		addDefaultToppings();
-		Price();
+		setBasePrices();
 	}
-
-	// Copy constructor
+	
+	/**
+	 * Copy constructor.
+	 * @param Pizza the pizza to copy
+	 * 
+	 * @see AbstractPizza#AbstractPizza(AbstractPizza)
+	 */
 	public VegetarianPizza(VegetarianPizza Pizza) {
 		super(Pizza); // Call the copy constructor of the superclass
 	}
-	 
+	
+	/**
+	 * Adds Vegetarian pizza toppings.<p>
+	 * 
+	 * Adds {@link Toppings#TOMATO}, {@link Toppings#CHEESE}, {@link Toppings#BELL_PEPPER}, 
+	 * {@link Toppings#BLACK_OLIVE}, and {@link Toppings#MUSHROOM} to the pizza's {@link AbstractPizza#toppingList}
+	 */
 	private void addDefaultToppings () {
 		toppingList.add(Toppings.TOMATO);
 		toppingList.add(Toppings.CHEESE);
@@ -21,39 +42,54 @@ public class VegetarianPizza  extends AbstractPizza {
 		toppingList.add(Toppings.BLACK_OLIVE);
 		toppingList.add(Toppings.MUSHROOM);
 	}
-	
-	// This sets price for this Pizza by first taking default price and then taking price of added toppings
-	private void Price () {
-		setPriceWithoutToppings(1.50);
+
+	/**
+	 * Assigns prices to the pizza, including toppings.<p>
+	 * 
+	 * Sets {@link AbstractPizza#priceWithoutToppings} to the default price, then
+	 * adds the price of toppings to the total price.
+	 */
+	private void setBasePrices() {
+		setPriceWithoutToppings(PizzaType.SUPREME.getBasePrice());
 		addToppingsToPrice(getPriceWithoutToppings());
 	}
 	
-	// This adds the toppings prices to the total price of pizza 
+	/**
+	 * Takes the price of the toppings in this pizza's {@link AbstractPizza#toppingList}, adds it to the price without toppings,
+	 * and returns the total price of the pizza.
+	 * 
+	 * @param priceWithoutToppings the price of the pizza without toppings
+	 * @return the total price of the pizza, including any toppings
+	 */
 	protected double addToppingsToPrice(double priceWithoutToppings) {
 
 		double total = priceWithoutToppings;
-		for(Toppings topping : getToppingList()) {// loop through the Toppings for this pizza ( toppings that were added to list) 
-			total += topping.getPrice();// add the topping price to the total 
+		for(Toppings topping : getToppingList()) { // Loop through the toppingList
+			total += topping.getPrice(); // Get the price of topping, and add it to the total
 		}
 		
-		setTotalPrice(total);// set the total 
+		setTotalPrice(total); // Set the total price of the pizza
 		return total;
 	}
 	
-	// this function pretty much does the same thing as add toppings to price except it is used for when updating the price of the pizza like when add new toppings 
+	/**
+	 * {@inheritDoc AbstractPizza#updatePizzaPrice()}
+	 */
 	public double updatePizzaPrice() {
-		double updatedTotal = getPriceWithoutToppings();// start it getting price without toppings 
-		for(Toppings topping : getToppingList()) {// once again looping through the toppings 
-			updatedTotal += topping.getPrice();// add topping price to total 
+ 
+		double updatedTotal = getPriceWithoutToppings(); // Get the price without toppings
+		
+		// Iterates through the pizza's topping list, and adds the price of the topping to updatedTotal
+		for(Toppings topping : getToppingList()) {
+			updatedTotal += topping.getPrice();
 		}
 		
-		setTotalPrice(updatedTotal);// set new total 
+		setTotalPrice(updatedTotal); // Set the pizza's totalPrice to the new total
 		return updatedTotal;
 	}
 	
-	// prints string of type of pizza order number price and toppings
+	// Prints the type of pizza, as well as any relevant fields.
 	public String toString() {
 		return "VegetarianPizza:" + pizzaOrderID + ", Price " + totalPrice + ", Toppings " + toppingList.toString();
 	}
 }
-

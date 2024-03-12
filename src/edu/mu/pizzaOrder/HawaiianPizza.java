@@ -16,12 +16,14 @@ public class HawaiianPizza  extends AbstractPizza {
 	public HawaiianPizza () {
 		super(); // Call the super constructor
 		addDefaultToppings();
-		addPriceOfToppings();
+		setBasePrices();
 	}
 	
 	/**
 	 * Copy constructor.
 	 * @param Pizza the pizza to copy
+	 * 
+	 * @see AbstractPizza#AbstractPizza(AbstractPizza)
 	 */
 	public HawaiianPizza(HawaiianPizza Pizza) {
 		super(Pizza);
@@ -45,8 +47,8 @@ public class HawaiianPizza  extends AbstractPizza {
 	 * Sets {@link AbstractPizza#priceWithoutToppings} to the default price, then
 	 * adds the price of toppings to the total price.
 	 */
-	private void addPriceOfToppings () {
-		setPriceWithoutToppings(3.00);
+	private void setBasePrices() {
+		setPriceWithoutToppings(PizzaType.HAWAIIAN.getBasePrice());
 		addToppingsToPrice(getPriceWithoutToppings());
 	}
 
@@ -79,13 +81,13 @@ public class HawaiianPizza  extends AbstractPizza {
 		for(Toppings topping : getToppingList()) {
 			updatedTotal += topping.getPrice();
 		}
+		
 		setTotalPrice(updatedTotal); // Set the pizza's totalPrice to the new total
 		return updatedTotal;
 	}
 
 	// Prints the type of pizza, as well as any relevant fields.
 	public String toString() {
-
 		return "HawaiianPizza:" + pizzaOrderID + ", Price " + totalPrice + ", Toppings " + toppingList.toString();
 	}
 }
