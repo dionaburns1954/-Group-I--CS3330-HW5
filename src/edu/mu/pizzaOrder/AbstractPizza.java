@@ -3,21 +3,58 @@ package edu.mu.pizzaOrder;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * An object containing base information for a pizza.
+ * 
+ * @author Logan Bird
+ * @author Dion Burns
+ * @author Ryan Esparza
+ * @author Albert Zhou
+ * @version 1.0
+ * 
+ * @see HawaiianPizza
+ * @see SupremePizza
+ * @see MargheritaPizza
+ * @see VegetarianPiza
+ */
 public abstract class AbstractPizza {
+
 	protected List<Toppings> toppingList;
+	/**
+	 * The base price of the pizza without any toppings. Adding {@link Toppings} to the pizza.
+	 * increases the cost.
+	 */
     protected double priceWithoutToppings;
+    /**
+     * The total cost of the pizza. <p>
+     * 
+     * The sum of {@link AbstractPizza#priceWithoutToppings}, {@link AbstractPizza#cookingPrice}, 
+     * and the price of any {@link Toppings} in {@link AbstractPizza#toppingList}.
+     */
     protected double totalPrice;
     protected int pizzaOrderID;
+    /**
+     * A unique ID created when a pizza is created using the 
+     * {@link PizzaCookingFactory#createPizza(PizzaType)} method.
+     */
     protected static int orderIDCounter;
     protected ICookingStrategy cookingStrategy;
     protected double cookingPrice;
     
+    /**
+     * Creates a new {@link AbstractPizza} object with only the toppingList. Other fields should be filled out in
+     * subclasses.
+     */
     public AbstractPizza() {
         toppingList = new ArrayList<>();
-        // Initialize other attributes here
     }
     
-    public AbstractPizza(AbstractPizza Pizza) {
+    /**
+     * Copy constructor for creating deep copies of {@link AbstractPizza} objects
+     * 
+     * @param Pizza the pizza to copy
+     */
+	public AbstractPizza(AbstractPizza Pizza) {
     	
     	this.toppingList = new ArrayList<>(Pizza.toppingList);
         this.priceWithoutToppings = Pizza.priceWithoutToppings;
@@ -27,14 +64,15 @@ public abstract class AbstractPizza {
         this.cookingPrice = Pizza.cookingPrice;
     }
     
-    
- // Getter and setter methods for toppingList
+	// Get the list of toppings
     public List<Toppings> getToppingList() {
         return toppingList;
     }
-    // implemented within the subclasses updates pizza price 
+    
+    // Updates the price of the pizza
     public abstract double updatePizzaPrice();
     
+    // Set the topping list
     public void setToppingList(List<Toppings> toppingList) {
         this.toppingList = toppingList;
     }
