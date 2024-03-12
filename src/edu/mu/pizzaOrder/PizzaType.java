@@ -1,19 +1,30 @@
 package edu.mu.pizzaOrder;
 
+/**
+ * Enum storing the different base pizzas available.
+ * 
+ * @author Logan Bird
+ * @author Albert Zhou
+ * @version 1.0
+ * 
+ * @see AbstractPizza
+ */
 public enum PizzaType {
-	// set enum up with left hand side being pizza type and right hand side being initial price of pizza 
+
 	MARGHERITA(2.50),
 	VEGETARIAN(1.50),
 	HAWAIIAN(3.00),
 	SUPREME(3.50);
 	
-	private double basePrice;// set price of enum 
+	private double basePrice;
 	
-	PizzaType(double toppingPrice){//have setter 
+	// Constructor for enum members
+	PizzaType(double toppingPrice) {
 		this.basePrice = toppingPrice;
 	}
-	// have a getter for price of pizza 
-	public double getBasePrice()
-{
-		return basePrice;}
+
+	// Get the base price of a given pizza type
+	public double getBasePrice() {
+		return basePrice;
+	}
 }

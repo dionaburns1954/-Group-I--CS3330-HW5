@@ -1,7 +1,7 @@
 package edu.mu.pizzaOrder;
 
 /**
- * Enum storing the different cooking methods for pizzas.
+ * Enum storing the different cooking methods for pizzas and their respective prices.
  * 
  * @author Logan Bird
  * @author Albert Zhou
@@ -19,9 +19,10 @@ public enum CookingStyleType {
 	CONVENTIONAL_OVEN(8.00),
 	MICROWAVE(1.00);
 	
-	private double cookingStylePrice; // Set the price of the cooking style
+	private double cookingStylePrice;
 	
-	CookingStyleType(double cookingStylePrice){
+	// Constructor for enum members
+	CookingStyleType(double cookingStylePrice) {
 		this.cookingStylePrice = cookingStylePrice;
 	}
 	

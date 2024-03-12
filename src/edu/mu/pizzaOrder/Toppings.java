@@ -1,5 +1,14 @@
 package edu.mu.pizzaOrder;
 
+/**
+ * Enum storing the vast array of toppings for pizzas, as well as the price associated with each topping.
+ * 
+ * @author Logan Bird
+ * @author Albert Zhou
+ * @version 1.0
+ * 
+ * @see AbstractPizza
+ */
 public enum Toppings {
 
 	TOMATO(1.50),
@@ -12,14 +21,14 @@ public enum Toppings {
 	MUSHROOM(1.50),
 	CANADIAN_BACON(4.00);
 	
-	
 	private final double price;
 	
-	// this is price for toppings ( last double) 
-	Toppings(double price){
+	// Constructor for enum members
+	Toppings(double price) {
 		this.price = price;
 	}
-	// this is the getter for price 
+	
+	// Get the price of a topping
 	public double getPrice() {
 		return price;
 	}
