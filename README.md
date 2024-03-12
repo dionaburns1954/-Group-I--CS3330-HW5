@@ -50,8 +50,11 @@ To Run this program just copy the git repository into your eclipse IDE and go in
 
 ## Pizza Cooking Factory 
 - `public AbstractPizza createPizza(PizzaType pizzaType)`
+  - creates a pizza and returns that pizza.
 - `private void incrementOrderID()`
+  - increments the OrderID static variable. This is to ensure that each pizza has a different order id. 
 - `private void assignPizzaOrderId(AbstractPizza p)`
+  - assigns a unique order id to a selected pizza.
 
 
 ## Dependencies
