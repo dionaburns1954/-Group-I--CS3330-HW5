@@ -34,11 +34,11 @@ public abstract class AbstractPizza {
     protected double totalPrice;
     protected int pizzaOrderID;
     /**
-     * A unique ID created when a pizza is created using the 
-     * {@link PizzaCookingFactory#createPizza(PizzaType)} method.
+     * Static counter to keep track of how many orders there are and assign unique IDs to {@link AbstractPizza#pizzaOrderID} when 
+     * a pizza is created using the {@link PizzaCookingFactory#createPizza(PizzaType)} method.
      */
     protected static int orderIDCounter;
-    protected ICookingStrategy cookingStrategy;
+	protected ICookingStrategy cookingStrategy;
     protected double cookingPrice;
     
     /**
@@ -94,6 +94,15 @@ public abstract class AbstractPizza {
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
+    
+    // Getter and setter methods for orderIDCounter
+    public static int getOrderIDCounter() {
+		return orderIDCounter;
+	}
+
+	public static void setOrderIDCounter(int orderIDCounter) {
+		AbstractPizza.orderIDCounter = orderIDCounter;
+	}
 
     // Getter and setter methods for pizzaOrderID
     public int getPizzaOrderID() {
