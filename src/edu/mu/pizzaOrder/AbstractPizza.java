@@ -19,26 +19,50 @@ import java.util.ArrayList;
  */
 public abstract class AbstractPizza {
 
+	/**
+	 * The list of {@link Toppings} that the pizza contains.
+	 * 
+	 */
 	protected List<Toppings> toppingList;
+	
 	/**
 	 * The base price of the pizza without any toppings. Adding {@link Toppings} to the pizza.
 	 * increases the cost.
 	 */
     protected double priceWithoutToppings;
+    
     /**
      * The total cost of the pizza. <p>
      * 
-     * The sum of {@link AbstractPizza#priceWithoutToppings}, {@link AbstractPizza#cookingPrice}, 
-     * and the price of any {@link Toppings} in {@link AbstractPizza#toppingList}.
+     * The sum of {@link #priceWithoutToppings}, {@link #cookingPrice}, 
+     * and the price of any {@link Toppings} in {@link #toppingList}.
      */
     protected double totalPrice;
-    protected int pizzaOrderID;
+    
     /**
-     * Static counter to keep track of how many orders there are and assign unique IDs to {@link AbstractPizza#pizzaOrderID} when 
+     * The order that the pizza belongs to.<p>
+     * 
+     * Value is assigned upon instantiation by {@link PizzaCookingFactory}
+     * @see #orderIDCounter
+     */
+    protected int pizzaOrderID;
+    
+    /**
+     * Static counter to keep track of how many pizzas there are and assign unique IDs to {@link #pizzaOrderID} when 
      * a pizza is created using the {@link PizzaCookingFactory#createPizza(PizzaType)} method.
      */
     protected static int orderIDCounter;
+    
+    /**
+     * How the pizza should be cooked.<p>
+     * 
+     * {@link #cookingPrice} should reflect the cooking strategy.
+     */
 	protected ICookingStrategy cookingStrategy;
+	
+	/**
+	 * The cost of the selected cooking strategy
+	 */
     protected double cookingPrice;
     
     /**
@@ -65,14 +89,19 @@ public abstract class AbstractPizza {
         this.cookingStrategy = Pizza.cookingStrategy;
         this.cookingPrice = Pizza.cookingPrice;
     }
+	
+    /**
+     * Updates the pizza price to accurately reflect the toppings in the {@link AbstractPizza#toppingList}.<p>
+     * 
+     * The price of the pizza should be updated when toppings are added to avoid price discrepancy.
+     * @return the total price of the pizza
+     */
+    public abstract double updatePizzaPrice();
     
 	// Get the list of toppings
     public List<Toppings> getToppingList() {
         return toppingList;
     }
-    
-    // Updates the price of the pizza
-    public abstract double updatePizzaPrice();
     
     // Set the topping list
     public void setToppingList(List<Toppings> toppingList) {
