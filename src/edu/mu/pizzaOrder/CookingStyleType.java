@@ -8,6 +8,9 @@ package edu.mu.pizzaOrder;
  * @version 1.0
  * 
  * @see ICookingStrategy
+ * @see BrickOvenCookingStrategy
+ * @see ConventionalOvenCookingStrategy
+ * @see MicrowaveCookingStrategy
  */
 public enum CookingStyleType {
 	

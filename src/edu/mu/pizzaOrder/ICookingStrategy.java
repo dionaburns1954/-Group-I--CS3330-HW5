@@ -13,7 +13,9 @@ public interface ICookingStrategy {
 	
 	/**
 	 * Changes {@link AbstractPizza#cookingPrice} and 
-	 * {@link AbstractPizza#cookingStrategy} to the relevant cooking strategy.
+	 * {@link AbstractPizza#cookingStrategy} to the relevant cooking strategy.<p>
+	 * 
+	 * Price should be updated after changes are applied.
 	 * @param pizza the pizza to apply the cooking method to
 	 * @return the result of the operation
 	 */
