@@ -63,5 +63,5 @@ Java JDK 21
 ## Team Members
 - Alber Zhou
 - Dion Burns
-- Logan Bird
+- Logan Bird ( Classes, Sub Classes, Enums)
 - Ryan Esparza
