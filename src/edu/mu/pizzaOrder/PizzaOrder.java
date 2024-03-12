@@ -2,7 +2,6 @@ package edu.mu.pizzaOrder;
 
 
 import java.util.List;
-import java.util.ArrayList;
 
 public class PizzaOrder {
 	
@@ -138,7 +137,11 @@ public class PizzaOrder {
 
     // Method for checkout
     public double checkout() throws Exception {
-        if(isThereAnyUncookedPizza()) {
+		if(pizzaOrderList.isEmpty()) {
+			// Throw an exception if there's no pizzas in the order list
+			throw new Exception("There are no pizzas in your cart!");
+			
+		} else if(!isThereAnyUncookedPizza()) {
         	double totalPrice = 0; // Running total of the price of all items in cart
         	
         	for(AbstractPizza p : pizzaOrderList) {
@@ -148,7 +151,7 @@ public class PizzaOrder {
         	return totalPrice;
         } else {
         	// Throw exception if there are uncooked pizzas in the cart
-        	throw new Exception("Uncooked pizza"); 
+        	throw new Exception("You have uncooked pizzas in your cart!"); 
         }
     }
 
