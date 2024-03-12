@@ -1,55 +1,91 @@
 package edu.mu.pizzaOrder;
 
+/**
+ * Hawaiian {@link AbstractPizza} containing Canadian bacon, cheese, and pineapple
+ * 
+ * @author Logan Bird
+ * @version 1.0
+ * 
+ * @see AbstractPizza
+ */
 public class HawaiianPizza  extends AbstractPizza {
+	
+	/**
+	 * Creates a HawaiianPizza with default toppings.
+	 */
 	public HawaiianPizza () {
-		super();
+		super(); // Call the super constructor
 		addDefaultToppings();
-		Price();
+		addPriceOfToppings();
 	}
 	
-	// Copy constructor
+	/**
+	 * Copy constructor.
+	 * @param Pizza the pizza to copy
+	 */
 	public HawaiianPizza(HawaiianPizza Pizza) {
-		super(Pizza); // Call the copy constructor of the superclass
+		super(Pizza);
 	}
 
+	/**
+	 * Adds Hawaiian pizza toppings.<p>
+	 * 
+	 * Adds {@link Toppings#CANADIAN_BACON}, {@link Toppings#CHEESE}, 
+	 * and {@link Toppings#PINEAPPLE} to the pizza's {@link AbstractPizza#toppingList}
+	 */
 	private void addDefaultToppings() {
 		toppingList.add(Toppings.CANADIAN_BACON);
 		toppingList.add(Toppings.CHEESE);
 		toppingList.add(Toppings.PINEAPPLE);
 	}
 		
-	// This sets price for this Pizza by first taking default price and then taking price of added toppings
-	private void Price () {
+	/**
+	 * Assigns prices to the pizza, including toppings.<p>
+	 * 
+	 * Sets {@link AbstractPizza#priceWithoutToppings} to the default price, then
+	 * adds the price of toppings to the total price.
+	 */
+	private void addPriceOfToppings () {
 		setPriceWithoutToppings(3.00);
 		addToppingsToPrice(getPriceWithoutToppings());
 	}
 
-	// This adds the toppings prices to the total price of pizza 
+	/**
+	 * Takes the price of the toppings in this pizza's {@link AbstractPizza#toppingList}, adds it to the price without toppings,
+	 * and returns the total price of the pizza.
+	 * 
+	 * @param priceWithoutToppings the price of the pizza without toppings
+	 * @return the total price of the pizza, including any toppings
+	 */
 	protected double addToppingsToPrice(double priceWithoutToppings) {
 
 		double total = priceWithoutToppings;
-		for(Toppings topping : getToppingList()) {// loop through the Toppings for this pizza ( toppings that were added to list) 
-			total += topping.getPrice();// add the topping price to the total 
+		for(Toppings topping : getToppingList()) { // Loop through the toppingList
+			total += topping.getPrice(); // Get the price of topping, and add it to the total
 		}
 
-		setTotalPrice(total);// set the total 
+		setTotalPrice(total); // Set the total price of the pizza
 		return total;
 	}
 
-	// this function pretty much does the same thing as add toppings to price except it is used for when updating the price of the pizza like when add new toppings 
+	/**
+	 * {@inheritDoc AbstractPizza#updatePizzaPrice()}
+	 */
 	public double updatePizzaPrice() {
-
-		double updatedTotal = getPriceWithoutToppings();// start it getting price without toppings 
-		for(Toppings topping : getToppingList()) {// once again looping through the toppings 
-			updatedTotal += topping.getPrice();// add topping price to total 
+		
+		double updatedTotal = getPriceWithoutToppings(); // Get the price without toppings
+		
+		// Iterates through the pizza's topping list, and adds the price of the topping to updatedTotal
+		for(Toppings topping : getToppingList()) {
+			updatedTotal += topping.getPrice();
 		}
-		setTotalPrice(updatedTotal);// set new total 
+		setTotalPrice(updatedTotal); // Set the pizza's totalPrice to the new total
 		return updatedTotal;
 	}
 
-	// prints string of type of pizza order number price and toppings
+	// Prints the type of pizza, as well as any relevant fields.
 	public String toString() {
 
-	return "HawaiianPizza:" + pizzaOrderID + ", Price " + totalPrice + ", Toppings " + toppingList.toString();
+		return "HawaiianPizza:" + pizzaOrderID + ", Price " + totalPrice + ", Toppings " + toppingList.toString();
 	}
 }
