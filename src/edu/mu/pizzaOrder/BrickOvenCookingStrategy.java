@@ -1,5 +1,13 @@
 package edu.mu.pizzaOrder;
 
+/**
+ * Brick oven cooking strategy. <p>
+ * 
+ * @author Logan Bird
+ * @version 1.0
+ * 
+ * @see ICookingStrategy
+ */
 public class BrickOvenCookingStrategy implements ICookingStrategy {
 
 	public boolean cook(AbstractPizza Pizza) {
