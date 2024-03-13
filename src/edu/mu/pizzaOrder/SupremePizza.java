@@ -29,6 +29,10 @@ public class SupremePizza  extends AbstractPizza {
 		super(Pizza); // Call the copy constructor of the superclass
 	}
 	
+	public SupremePizza copy() {
+		return new SupremePizza(this);
+	}
+	
 	/**
 	 * Adds Supreme pizza toppings.<p>
 	 * 

@@ -29,6 +29,10 @@ public class MargheritaPizza  extends AbstractPizza {
 		super(Pizza); // Call the copy constructor of the superclass
 	}
 	
+	public MargheritaPizza copy() {
+		return new MargheritaPizza(this);
+	}
+	
 	/**
 	 * Adds Margherita pizza toppings.<p>
 	 * 

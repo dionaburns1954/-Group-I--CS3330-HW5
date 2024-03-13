@@ -90,6 +90,11 @@ public abstract class AbstractPizza {
         this.cookingPrice = Pizza.cookingPrice;
     }
 	
+	/**
+	 * Returns a copy of the current object.
+	 */
+	public abstract AbstractPizza copy();
+	
     /**
      * Updates the pizza price to accurately reflect the toppings in the {@link AbstractPizza#toppingList}.<p>
      * 

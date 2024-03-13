@@ -28,6 +28,10 @@ public class HawaiianPizza  extends AbstractPizza {
 	public HawaiianPizza(HawaiianPizza Pizza) {
 		super(Pizza);
 	}
+	
+	public HawaiianPizza copy() {
+		return new HawaiianPizza(this);
+	}
 
 	/**
 	 * Adds Hawaiian pizza toppings.<p>

@@ -29,6 +29,10 @@ public class VegetarianPizza  extends AbstractPizza {
 		super(Pizza); // Call the copy constructor of the superclass
 	}
 	
+	public VegetarianPizza copy() {
+		return new VegetarianPizza(this);
+	}
+	
 	/**
 	 * Adds Vegetarian pizza toppings.<p>
 	 * 
