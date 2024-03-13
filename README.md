@@ -62,6 +62,6 @@ Java JDK 21
 
 ## Team Members
 - Alber Zhou
-- Dion Burns
+- Dion Burns (PizzaOrder class methods, createPizza() in PizzaCookingFactory class, Program description, How to run description, method, and enum descriptions in README file)
 - Logan Bird ( Classes, Sub Classes, Enums)
 - Ryan Esparza
