@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * Class to manage pizza orders.
  * 
+ * @author Logan Bird
  * @author Dion Burns
  * @author Ryan Esparza
  * @author Albert Zhou
@@ -25,18 +26,33 @@ public class PizzaOrder {
 		this.pizzaOrderList = new ArrayList<AbstractPizza>();
 	}
 	
+    /**
+     * Searches through {@link #pizzaOrderList} for a pizza with the specified order ID, and returns it.
+     * @param orderID the order ID of the pizza to find
+     * @return the pizza in the orderList with the specified order ID. If no pizza is found, returns null.
+     */
+    private AbstractPizza getRealPizzaByOrderID(int orderID) {
+    	// Loops through the order list and returns the pizza matching the order ID.
+    	for(AbstractPizza p : pizzaOrderList) {
+    		if(p.getPizzaOrderID() == orderID) {
+    			return p;
+    		}
+    	}
+    	
+    	return null; //returns null if not pizza matching ID was found
+    }
+	
 	/**
 	 * Searches through the pizza order list for the order with the given ID and prints the toppings of the order.
 	 * 
 	 * @param orderID the order ID of the pizza to find
 	 */
     public void printListOfToppingsByPizzaOrderID(int orderID) {
-
-    	// Loop through the pizza order list
-    	for(AbstractPizza p : pizzaOrderList) {
-    		if(p.getPizzaOrderID() == orderID) {
-    			System.out.println(p.getToppingList()); // Print the list of toppings
-    		}
+    	
+    	// Get the pizza with the order ID, and print the topping list if it exists.
+    	AbstractPizza pizza = getRealPizzaByOrderID(orderID);
+    	if(pizza != null) {
+    		System.out.println(pizza.getToppingList());
     	}
     }
 
@@ -44,7 +60,7 @@ public class PizzaOrder {
      * Prints the details of all pizzas in {@link PizzaOrder#pizzaOrderList}
      * 
      * @param orderID 
-     */
+     */	
     public void printPizzaOrderCart(int orderID) { // NOTE: What is the parameter here for?
     	for(AbstractPizza p : pizzaOrderList) {
     		System.out.println(p.toString()); // Print the details of each pizza
@@ -52,24 +68,17 @@ public class PizzaOrder {
     }
 
     /**
-     * Searches through {@link #pizzaOrderList} for a pizza with the specified order ID, and returns it.
+     * Searches through {@link #pizzaOrderList} for a pizza with the specified order ID, and returns a copy of it.
      * 
      * @param orderID the order ID of the pizza to find
-     * @return the pizza with the specified orderID. If no pizza is found, returns null.
+     * @return a copy of pizza with the specified order ID. If no pizza is found, returns null.
      */
     public AbstractPizza getPizzaByOrderID(int orderID) {
-    	/*
-    	 * TODO: Clean this up
-    	 */
-    	for(int i = 0; i < pizzaOrderList.size(); i++) {
-    		if(pizzaOrderList.get(i).getPizzaOrderID() == orderID) { // Loop through pizza list
-    			return pizzaOrderList.get(i); //returns index of pizza if found
-    		}
-    	}
-    	
-    	return null; //returns null if not pizza matching ID was found
+    	// Call getRealPizzaByOrderID to get the pizza, and return a copy if it's not null. Otherwise return null.
+    	return getRealPizzaByOrderID(orderID) != null ? getRealPizzaByOrderID(orderID).copy() : null;
+  
     }
-
+    
     /**
      * Adds a pizza of given {@link PizzaType} to the cart.
      * 
@@ -77,58 +86,55 @@ public class PizzaOrder {
      * @return true if the pizza was successfully added, false otherwise.
      */
     public boolean addPizzaToCart(PizzaType pizzaType) {
-        // TODO: Implement method
-    	//user passes in pizzType
-    	//create pizza of specific type
-    	//add pizza to pizzaOrderList
-    	AbstractPizza p;
-    	if(pizzaType == PizzaType.HAWAIIAN) { //creates Hawaiian pizza
-    		p = pizzaFactory.createPizza(pizzaType);
-    		
-    		pizzaOrderList.add(p);
-    		return true;
-    	}
-    	else if(pizzaType == PizzaType.MARGHERITA) { //creates Margherita pizza
-    		p = pizzaFactory.createPizza(pizzaType);
-    		
-    		pizzaOrderList.add(p);
-    		return true;
-    	}
-    	else if(pizzaType == PizzaType.SUPREME) { //creates supreme pizza
-    		p = pizzaFactory.createPizza(pizzaType);
-    		
-    		pizzaOrderList.add(p);
-    		return true;
-    	}
-    	else if(pizzaType == PizzaType.VEGETARIAN){ //creates vegetarian pizza
-    		p = pizzaFactory.createPizza(pizzaType);
-    		
-    		pizzaOrderList.add(p);
-    		return true;
+
+    	AbstractPizza p; // Pizza to be returned
+    	
+    	// Finds a match in the PizzaType enum and creates the corresponding pizza
+    	switch(pizzaType) {
+    	case HAWAIIAN:
+    		p = pizzaFactory.createPizza(PizzaType.HAWAIIAN);
+    		break;
+    	case MARGHERITA:
+    		p = pizzaFactory.createPizza(PizzaType.MARGHERITA);
+    		break;
+    	case SUPREME:
+    		p = pizzaFactory.createPizza(PizzaType.SUPREME);
+    		break;
+    	case VEGETARIAN:
+    		p = pizzaFactory.createPizza(PizzaType.VEGETARIAN);
+    		break;
+    	default:
+    		return false;
     	}
     	
-    	return false;
+    	// If the pizza is successfully added to the order list, returns true, otherwise false.
+    	if(pizzaOrderList.add(p)) {
+    		return true;
+    	} else {
+    		return false;
+    	}
     }
 
     /**
-     * Adds a {@link Topping} to a given pizza. 
+     * Adds a {@link Topping} to a given pizza and updates the price.
      * 
      * @param orderID the order ID of the pizza to add toppings to
      * @param topping the topping to add to the pizza
      * @return true if the topping was successfully added, false otherwise.
      */
     public boolean addNewToppingToPizza(int orderID, Toppings topping) {
-
-    	for(int i = 0; i < pizzaOrderList.size(); i++) {
-    		if(pizzaOrderList.get(i).getPizzaOrderID() == orderID) {
-    			AbstractPizza p = pizzaOrderList.get(i);
-    			p.getToppingList().add(topping);
-    			p.setTotalPrice(p.getTotalPrice() + topping.getPrice());
-    			return true;
-    		}
+    	
+    	// Return false if the pizza with specified order ID doesn't exist
+    	AbstractPizza pizza = getRealPizzaByOrderID(orderID);
+    	if(pizza == null) {
+    		return false;
     	}
     	
-    	return false;
+    	// Add the topping and update the price
+    	pizza.getToppingList().add(topping);
+    	pizza.updatePizzaPrice();
+    	return true;
+    	
     }
 
     /**
@@ -139,24 +145,20 @@ public class PizzaOrder {
      * @return true if the topping was successfully removed, false otherwise.
      */
     public boolean removeToppingFromPizza(int orderID, Toppings topping) {
-    	//loop through pizza list and find pizza with orderID
-    	// remove topping from pizza if applicable
-    	//if found pizza but no topping exists return true
-    	//if found pizza and topping exists return true
-    	//if did not find pizza return false
-    	for(int i = 0; i < pizzaOrderList.size(); i++) { //loop through pizzaOrderList to find specific pizza
-    		if(pizzaOrderList.get(i).getPizzaOrderID() == orderID) { 
-    			AbstractPizza p = pizzaOrderList.get(i);
-    			for(int j = 0; j < p.getToppingList().size(); j++) { //go through topping list of found pizza
-    				if(p.getToppingList().get(i) == topping) {
-    					p.getToppingList().remove(i); //remove topping if it exists on pizza
-    					p.setTotalPrice(p.getTotalPrice() - topping.getPrice()); //changes price of pizza
-    					return true;
-    				}
-    			}
-    			return true;
-    		}
+    	
+    	// Get the pizza with the specified order ID. If the pizza doesn't exist, then returns false.
+    	AbstractPizza pizza = getRealPizzaByOrderID(orderID);
+    	if(pizza == null) {
+    		return false;
     	}
+    	
+    	// If the pizza contains the topping, remove it and update the price.
+    	if(pizza.getToppingList().contains(topping)) {
+    		pizza.getToppingList().remove(topping);
+    		pizza.updatePizzaPrice();
+    		return true;
+    	}
+    	
     	return false;
     }
 
@@ -169,6 +171,7 @@ public class PizzaOrder {
      */
     public boolean isThereAnyUncookedPizza() {
     	
+    	// Loop through the order list, and check if there are pizzas without a cooking strategy.
     	for(AbstractPizza p : pizzaOrderList) {
     		if(p.getCookingStrategy() == null) {
     			return true;
@@ -216,20 +219,33 @@ public class PizzaOrder {
      * @return true if the operation was successful, false otherwise.
      */
     public boolean selectCookingStrategyByPizzaOrderID(int orderID, CookingStyleType cookingStrategyType) {
-        //loop through pizza list and find pizza with orderID
-    	//set cooking style of pizza with that orderID
-    	
-    	for(int i = 0; i < pizzaOrderList.size(); i++) { 
-    		if(pizzaOrderList.get(i).getPizzaOrderID() == orderID) { //find pizza with orderID
-    			AbstractPizza p = pizzaOrderList.get(i);
-    			p.setCookingStrategy(cookingStrategy); //change cooking strategy
-    			p.setCookingPrice(cookingStrategyType.getCookingStylePrice()); //updates price of pizza
-    			
-    			return true;
-    		}
+
+    	// If the pizza doesn't exist, then return false
+    	AbstractPizza pizza = getRealPizzaByOrderID(orderID);
+    	if(pizza == null) {
+    		return false;
     	}
     	
-    	return false;
+    	// Set the cooking strategy based on the cooking style type.
+    	switch(cookingStrategyType) {
+    	case BRICK_OVEN:
+    		cookingStrategy = new BrickOvenCookingStrategy();
+    		break;
+    	case CONVENTIONAL_OVEN:
+    		cookingStrategy = new ConventionalOvenCookingStrategy();
+    		break;
+    	case MICROWAVE:
+    		cookingStrategy = new MicrowaveCookingStrategy();
+    		break;
+    	default:
+    		return false;
+    	}
+    	
+    	// Set the cooking strategy, price, and update the price
+    	pizza.setCookingStrategy(cookingStrategy);
+    	pizza.setCookingPrice(cookingStrategyType.getCookingStylePrice());
+    	pizza.updatePizzaPrice();
+    	return true;
     }
 
 }
