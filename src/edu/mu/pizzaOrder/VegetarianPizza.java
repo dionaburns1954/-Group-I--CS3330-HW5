@@ -54,7 +54,7 @@ public class VegetarianPizza  extends AbstractPizza {
 	 * adds the price of toppings to the total price.
 	 */
 	private void setBasePrices() {
-		setPriceWithoutToppings(PizzaType.SUPREME.getBasePrice());
+		setPriceWithoutToppings(PizzaType.VEGETARIAN.getBasePrice());
 		addToppingsToPrice(getPriceWithoutToppings());
 	}
 	
@@ -88,6 +88,7 @@ public class VegetarianPizza  extends AbstractPizza {
 			updatedTotal += topping.getPrice();
 		}
 		
+		updatedTotal += cookingPrice;
 		setTotalPrice(updatedTotal); // Set the pizza's totalPrice to the new total
 		return updatedTotal;
 	}

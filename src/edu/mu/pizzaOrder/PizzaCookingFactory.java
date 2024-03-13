@@ -61,7 +61,7 @@ public class PizzaCookingFactory {
 	
 	// Assigns the orderIDCounter to the pizzaOrderID field.
 	private void assignPizzaOrderId(AbstractPizza p) {
-		incrementOrderID();
 		p.setPizzaOrderID(AbstractPizza.getOrderIDCounter());
+		incrementOrderID();
 	}
 }

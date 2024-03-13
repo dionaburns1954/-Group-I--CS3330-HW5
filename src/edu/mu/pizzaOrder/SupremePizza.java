@@ -90,6 +90,7 @@ public class SupremePizza  extends AbstractPizza {
 			updatedTotal += topping.getPrice();
 		}
 		
+		updatedTotal += cookingPrice;
 		setTotalPrice(updatedTotal); // Set the pizza's totalPrice to the new total
 		return updatedTotal;
 	}
