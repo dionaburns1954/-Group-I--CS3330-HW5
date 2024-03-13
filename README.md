@@ -4,7 +4,7 @@
 This program is supposed to simulate a pizza ordering service. A user is supposed to give an order that includes a certain number of pizzas. The user can select what type of toppings they want on the pizza and how they would like it cooked. At the end, the user can checkout and the program will return the price of their order. This program utilizes the factory creation pattern to create new pizzas and add them to the user's order. 
 
 ## How To Run
-To Run this program just copy the git repository into your eclipse IDE and go into the Main file. From there you can create an instance of a PizzaOrder where you can order pizza using any of the methods provided in the PizzaOrder class.
+To Run this program just copy the git repository into your Eclipse IDE and go into the Main file. From there you can create an instance of a PizzaOrder where you can order pizza using any of the methods provided in the PizzaOrder class.
 
 ## Classes/ Sub Classes / Interfaces
 - Abstract Pizza
@@ -61,7 +61,7 @@ To Run this program just copy the git repository into your eclipse IDE and go in
 Java JDK 21
 
 ## Team Members
-- Alber Zhou
+- Albert Zhou (Documentation and formatting, code refactoring, final code testing)
 - Dion Burns (PizzaOrder class methods, createPizza() in PizzaCookingFactory class, Program description, How to run description, method, and enum descriptions in README file)
 - Logan Bird ( Classes, Sub Classes, Enums)
 - Ryan Esparza
