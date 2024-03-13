@@ -20,4 +20,9 @@ public class BrickOvenCookingStrategy implements ICookingStrategy {
 		return true;
 	
 	}
+
+	@Override
+	public CookingStyleType getCookingType() {
+		return CookingStyleType.BRICK_OVEN;
+	}
 }

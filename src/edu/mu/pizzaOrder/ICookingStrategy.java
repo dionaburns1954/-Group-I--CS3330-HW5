@@ -20,4 +20,11 @@ public interface ICookingStrategy {
 	 * @return the result of the operation
 	 */
 	public boolean cook(AbstractPizza pizza);
+	
+	/**
+	 * Gets the {@link CookingStyleType} of the object.
+	 * 
+	 * @return the {@link CookingStyleType}
+	 */
+	public CookingStyleType getCookingType();
 }

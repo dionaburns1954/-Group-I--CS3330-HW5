@@ -20,4 +20,9 @@ public class MicrowaveCookingStrategy implements ICookingStrategy{
 		return true;
 	
 	}
+
+	@Override
+	public CookingStyleType getCookingType() {
+		return CookingStyleType.MICROWAVE;
+	}
 }

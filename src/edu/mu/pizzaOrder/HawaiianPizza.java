@@ -93,6 +93,8 @@ public class HawaiianPizza  extends AbstractPizza {
 
 	// Prints the type of pizza, as well as any relevant fields.
 	public String toString() {
-		return "HawaiianPizza:" + pizzaOrderID + ", Price " + totalPrice + ", Toppings " + toppingList.toString();
+		String cookingMethodString = cookingStrategy != null ? cookingStrategy.getCookingType().toString() : "None";
+		
+		return "HawaiianPizza: Order ID: " + pizzaOrderID + ", Base price:" + priceWithoutToppings + ", Cooking price: " + cookingPrice + ", Total Price: " + totalPrice + ", Cooking method: " + cookingMethodString + ", Toppings: " + toppingList.toString();
 	}
 }

@@ -20,4 +20,9 @@ public class ConventionalOvenCookingStrategy implements ICookingStrategy{
 		return true;
 		
 	}
+
+	@Override
+	public CookingStyleType getCookingType() {
+		return CookingStyleType.CONVENTIONAL_OVEN;
+	}
 }

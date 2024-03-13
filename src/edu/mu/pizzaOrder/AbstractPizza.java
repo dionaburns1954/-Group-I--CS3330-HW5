@@ -71,7 +71,6 @@ public abstract class AbstractPizza {
      */
     public AbstractPizza() {
         toppingList = new ArrayList<>();
-        // Initialize other attributes here
         cookingStrategy = null;
     }
     
